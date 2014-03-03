@@ -1,0 +1,33 @@
+    {% extends 'base.html' %}
+     
+{% load bootstrap3 %}     
+    {% block title %} rob sayers dot com {% endblock %}
+     
+    {% block content %}
+{% if extra %}
+<h2><small>{{extra}}</small></h2>
+{% endif %}
+        {% for post in posts %}
+        <div class="blog-post">
+            <h2 class="blog-post-title">
+                <a href="{{post.get_absolute_url}}">
+                    {{post.title}}
+                </a>
+            </h2>
+            <p>{{post.html|safe}}</p>
+            <p class="blog-post-meta">
+                Posted on
+                <time datetime="{{post.created|date:"c"}}">
+                {{post.created|date}}
+                </time>
+            </p>
+        </div>
+        {% endfor %}
+
+    {% bootstrap_pagination posts url="?page=1" %}
+
+
+
+
+
+    {% endblock %}
