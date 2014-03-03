@@ -3,6 +3,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404
 from blogapp.models import Post
 import datetime      
+import PyRSS2Gen
+
 def index(request):
     # get the blog posts that are published
     page = request.GET.get('page')
@@ -69,3 +71,4 @@ def post(request, slug,  month, year):
     post = get_object_or_404(Post, slug=slug)
     # now return the rendered template
     return render(request, 'blog/post.html', {'post': post})
+
